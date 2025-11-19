@@ -28,9 +28,16 @@ public class Algebra {
 		// Replace the following statement with your code
 		int total = x1;
 		int i = 0;
-		while (i < x2){
-			total ++;
-			i ++;
+		if ( x2 > 0 )
+			while (i < x2){
+				total ++;
+				i ++;
+		}
+		else {
+			while(i >x2) {
+				total -- ;
+				i -- ;
+			}
 		}
 		return total;
 	}
@@ -40,9 +47,16 @@ public class Algebra {
 		// Replace the following statement with your code
 		int totally = x1;
 		int i = 0;
-		while (i < x2) {
-			totally --;
-			i ++;
+		if ( x2 > 0)
+			while (i < x2) {
+				totally --;
+				i ++;
+		}
+		else {
+			while (i > x2) {
+				totally ++;
+				i --;
+			}
 		}
 		return totally;
 	}
@@ -52,9 +66,17 @@ public class Algebra {
 		// Replace the following statement with your code
 		int total = 0;
 		int i = 0;
-		while (i < x2) {
-			total = plus(total, x1) ;
-			i ++;
+		if ( x2 > 0)
+			while (i < x2) {
+				total = plus(total, x1) ;
+				i ++;
+		}
+		else {
+			while ( i > x2) {
+				total = plus(total, x1);
+				i -- ;
+			}
+		total = minus(0, total);
 		}
 		return total;
 	}
@@ -75,10 +97,23 @@ public class Algebra {
 	public static int div(int x1, int x2) {
 		// Replace the following statement with your code
 		int count = 0;
-		while ( x1 >= x2) {
-			x1= x1 - x2;
-			count++ ;
+		int a = x1;
+		int b = x2;
+
+		if (a < 0 ) {
+			a = minus(0, a);
 		}
+		if ( b < 0){
+			b = minus(0, b);
+
+		}
+			while ( a >= b) {
+				a= minus(a, b);
+				count++ ;
+		}
+   		 if ((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)) {
+        count = minus(0, count);
+   		 }
 		return count;
 	}
 
