@@ -1,4 +1,5 @@
 // Computes the periodical payment necessary to pay a given loan.
+
 public class LoanCalc {
 	
 	static double epsilon = 0.001;  // Approximation accuracy
@@ -29,7 +30,12 @@ public class LoanCalc {
 	// interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	private static double endBalance(double loan, double rate, int n, double payment) {	
 		// Replace the following statement with your code
-		return 0;
+		double balance = loan;
+		for( int i = 0; i < n ; i ++ ) {
+			balance = balance - payment;
+			balance = balance * (1 + rate/100);
+		}
+		return balance;
 	}
 	
 	// Uses sequential search to compute an approximation of the periodical payment
@@ -39,7 +45,17 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
 		// Replace the following statement with your code
-		return 0;
+		double payment = loan / n;
+		iterationCounter = 0;
+		double balance = endBalance(loan, rate, n, payment);
+
+		while ( balance > 0 ) {
+
+			iterationCounter ++;
+			payment = payment + epsilon;
+			balance = endBalance(loan, rate, n, payment);
+		}
+		return payment;
     }
     
     // Uses bisection search to compute an approximation of the periodical payment 
@@ -49,6 +65,39 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
         // Replace the following statement with your code
-		return 0;
+		    // נקודת התחלה נמוכה (תשלום קטן מדי => היתרה חיובית)
+    double low = loan / n;
+
+    // נקודת התחלה גבוהה (תשלום עצום => היתרה שלילית)
+    double high = loan;
+
+    // איפוס מונה האיטרציות
+    iterationCounter = 0;
+
+    // נחשב את balance עבור low
+    double balLow = endBalance(loan, rate, n, low);
+
+    // נחשב את balance עבור high
+    double balHigh = endBalance(loan, rate, n, high);
+
+    // כל עוד הטווח בין high ל-low גדול מ-epsilon
+    while (high - low > epsilon) {
+
+        iterationCounter++;
+
+        double mid = (low + high) / 2.0;   // תשלום באמצע
+        double balMid = endBalance(loan, rate, n, mid);
+
+        // אם balMid ו-balLow באותו סימן → הפתרון בין mid ל-high
+        if (balMid > 0 && balLow > 0) {
+            low = mid;
+            balLow = balMid;
+        } 
+        else {
+            high = mid;
+            balHigh = balMid;
+        }
+    }
+		return (low + high) / 2.0;
     }
 }
