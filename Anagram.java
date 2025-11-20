@@ -32,11 +32,12 @@ public class Anagram {
 		return false;
 	}
 	   
-	// Returns a preprocessed version of the given string: all the letter characters are converted
+	// Returns a preprocesseda version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		// Replace the following statement with your code
+		
 		return "";
 	} 
 	   

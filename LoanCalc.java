@@ -65,39 +65,31 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
         // Replace the following statement with your code
-		    // נקודת התחלה נמוכה (תשלום קטן מדי => היתרה חיובית)
-    double low = loan / n;
-
-    // נקודת התחלה גבוהה (תשלום עצום => היתרה שלילית)
-    double high = loan;
-
-    // איפוס מונה האיטרציות
+    double lower = loan / n;
+    double higher = loan;
     iterationCounter = 0;
 
-    // נחשב את balance עבור low
-    double balLow = endBalance(loan, rate, n, low);
+    // חישובים עבור יותר ופחות
+    double underloan= endBalance(loan, rate, n, lower);
+    double overloan= endBalance(loan, rate, n, higher);
 
-    // נחשב את balance עבור high
-    double balHigh = endBalance(loan, rate, n, high);
-
-    // כל עוד הטווח בין high ל-low גדול מ-epsilon
-    while (high - low > epsilon) {
+    // תכלס הייתי רוצה לעשות == אבל זה לא יעבוד כי אפסילון יכול להיות שבר ממש קטן ומשהו לא יסתדר שם
+    while (higher - lower > epsilon) {
 
         iterationCounter++;
 
-        double mid = (low + high) / 2.0;   // תשלום באמצע
-        double balMid = endBalance(loan, rate, n, mid);
+        double mid = (lower + higher ) / 2.0;  
+        double nowMid = endBalance(loan, rate, n, mid);
 
-        // אם balMid ו-balLow באותו סימן → הפתרון בין mid ל-high
-        if (balMid > 0 && balLow > 0) {
-            low = mid;
-            balLow = balMid;
+        if (nowMid > 0 && underloan > 0) {
+            lower = mid;
+            underloan = nowMid;
         } 
         else {
-            high = mid;
-            balHigh = balMid;
+            higher = mid;
+            overloan = nowMid;
         }
     }
-		return (low + high) / 2.0;
+		return (lower + higher) / 2.0;
     }
 }
