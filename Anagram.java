@@ -71,7 +71,6 @@ public class Anagram {
 		String clean = "";
 
 		for ( int i = 0; i < lower.length(); i++) {
-			str.charAt(i);
 			char c = lower.charAt(i);
 			
 			if (Character.isLetter(c) ) {
@@ -94,7 +93,7 @@ public class Anagram {
         char c = pool.charAt(r);
         result = result + c;
 
-        // מוחקים אותו מהמאגר
+        // מחיקה של חזרתיות
         if (r == 0) {
             pool = pool.substring(1);   
         } else if (r == pool.length() - 1) {
