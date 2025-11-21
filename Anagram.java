@@ -73,7 +73,7 @@ public class Anagram {
 		for ( int i = 0; i < lower.length(); i++) {
 			char c = lower.charAt(i);
 			
-			if (Character.isLetter(c) ) {
+			if (c >= 'a' && c <= 'z') {
 				clean = clean + c;
 			}
 		}
