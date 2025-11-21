@@ -79,15 +79,15 @@ public class LoanCalc {
         iterationCounter++;
 
         double mid = (lower + higher ) / 2.0;  
-        double nowMid = endBalance(loan, rate, n, mid);
+        double nowmid = endBalance(loan, rate, n, mid);
 
-        if (nowMid > 0 && underloan > 0) {
+        if (nowmid > 0 && underloan > 0) {
             lower = mid;
-            underloan = nowMid;
+            underloan = nowmid;
         } 
         else {
             higher = mid;
-            overloan = nowMid;
+            overloan = nowmid;
         }
     }
 		return (lower + higher) / 2.0;
