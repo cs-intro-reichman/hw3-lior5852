@@ -34,6 +34,11 @@ public class Anagram {
 		// Replace the following statement with your code
 		String w1 = preProcess(str1);
     	String w2 = preProcess(str2);
+
+		// בעיה בגיט והצאט המליץ לי לשים פה רווחים - בכנות לא סגור על זה
+		w1 = w1.replace(" ", "");
+   		w2 = w2.replace(" ", "");
+		
 		if (w1.length() != w2.length()) {
         	return false;
     	}
