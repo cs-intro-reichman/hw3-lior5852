@@ -26,42 +26,114 @@ public class Algebra {
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		int total = x1;
+		int i = 0;
+		if ( x2 > 0 )
+			while (i < x2){
+				total ++;
+				i ++;
+		}
+		else {
+			while(i >x2) {
+				total -- ;
+				i -- ;
+			}
+		}
+		return total;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		int totally = x1;
+		int i = 0;
+		if ( x2 > 0)
+			while (i < x2) {
+				totally --;
+				i ++;
+		}
+		else {
+			while (i > x2) {
+				totally ++;
+				i --;
+			}
+		}
+		return totally;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		int total = 0;
+		int i = 0;
+		if ( x2 > 0)
+			while (i < x2) {
+				total = plus(total, x1) ;
+				i ++;
+		}
+		else {
+			while ( i > x2) {
+				total = plus(total, x1);
+				i -- ;
+			}
+		total = minus(0, total);
+		}
+		return total;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		// Replace the following statement with your code
-		return 0;
+		int total = 1;
+		int i = 0;
+		while (i < n) {
+			total = times(total, x);
+			i ++;
+		}
+		return total;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		int count = 0;
+		int a = x1;
+		int b = x2;
+
+		if (a < 0 ) {
+			a = minus(0, a);
+		}
+		if ( b < 0){
+			b = minus(0, b);
+
+		}
+			while ( a >= b) {
+				a= minus(a, b);
+				count++ ;
+		}
+   		 if ((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)) {
+        count = minus(0, count);
+   		 }
+		return count;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
-	}	
+		while (x1 >= x2) {
+			x1 = x1 - x2;
+		}
+		return x1;
+	}
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		// Replace the following statement with your code
-		return 0;
+		int a = 1;
+
+		while (x >= times(a, a)) {
+			a ++ ;
+		}
+		return a -1 ;	
 	}	  	  
 }
